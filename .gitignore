@@ -4,3 +4,7 @@
 
 #ignore image of vagrant arm64
 *vagrant
+
+#other files
+index.html
+glass.html
