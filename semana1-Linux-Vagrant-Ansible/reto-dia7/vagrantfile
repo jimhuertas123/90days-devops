@@ -1,0 +1,30 @@
+Vagrant.configure("2") do |config|
+    
+    #Imagen arm64 de Ubuntu 22.04
+    config.vm.box = "bento/ubuntu-22.04"
+
+    # Configuración de red (accesible via IP)
+    config.vm.network "private_network", ip: "192.168.33.10"
+    config.vm.network "forwarded_port", guest: 3001, host: 3000 # Puerto para el servicio Result (ver la web desde el host)
+    config.vm.network "forwarded_port", guest: 80, host: 8080 # Puerto para el servicio Result (ver la web desde el host)
+
+    # ansible provisionamiento
+    config.vm.provision "ansible" do |ansible|
+        ansible.playbook = "./playbooks/retosemana1.yaml"
+    end
+
+    # Provisionamiento con Shell
+    config.vm.provision "shell", inline: <<-SHELL
+        apt update
+        node -v
+        npm -v
+        python3 -V
+    SHELL
+
+    # Provisiona tu script de inicialización de la app
+    config.vm.provision "shell", path: "scripts/init_app.sh"
+
+
+    
+end
+

@@ -1,0 +1,144 @@
+==> default: Attempting graceful shutdown of VM...
+==> default: Forcing shutdown of VM...
+==> default: Clearing any previously set forwarded ports...
+==> default: Clearing any previously set network interfaces...
+==> default: Preparing network interfaces based on configuration...
+    default: Adapter 1: nat
+    default: Adapter 2: hostonly
+==> default: Forwarding ports...
+    default: 3001 (guest) => 3000 (host) (adapter 1)
+    default: 80 (guest) => 8080 (host) (adapter 1)
+    default: 22 (guest) => 2222 (host) (adapter 1)
+==> default: Booting VM...
+==> default: Waiting for machine to boot. This may take a few minutes...
+    default: SSH address: 127.0.0.1:2222
+    default: SSH username: vagrant
+    default: SSH auth method: private key
+    default: Warning: Connection reset. Retrying...
+    default: Warning: Remote connection disconnect. Retrying...
+==> default: Machine booted and ready!
+==> default: Checking for guest additions in VM...
+==> default: Configuring and enabling network interfaces...
+==> default: Mounting shared folders...
+    default: /Users/jimhuertas/Documents/DevOps/Vagrant-semana1/reto-dia7 => /vagrant
+==> default: Running provisioner: ansible...
+Vagrant gathered an unknown Ansible version:
+
+
+and falls back on the compatibility mode '1.8'.
+
+Alternatively, the compatibility mode can be specified in your Vagrantfile:
+https://www.vagrantup.com/docs/provisioning/ansible_common.html#compatibility_mode
+    default: Running ansible-playbook...
+
+PLAY [Main configuration server playbook] **************************************
+
+TASK [Gathering Facts] *********************************************************
+[WARNING]: Platform linux on host default is using the discovered Python
+interpreter at /usr/bin/python3.10, but future installation of another Python
+interpreter could change the meaning of that path. See
+https://docs.ansible.com/ansible-
+core/2.18/reference_appendices/interpreter_discovery.html for more information.
+ok: [default]
+
+TASK [Install essentials packages] *********************************************
+ok: [default]
+
+TASK [Add NodeSource repository for Node.js 20.x] ******************************
+changed: [default]
+
+TASK [Install Node.js] *********************************************************
+ok: [default]
+
+TASK [Install Python packages] *************************************************
+ok: [default]
+
+TASK [Crear base de datos votes (workaround)] **********************************
+changed: [default]
+
+TASK [Asignar contraseña al usuario postgres] **********************************
+changed: [default]
+
+PLAY RECAP *********************************************************************
+default                    : ok=7    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+==> default: Running provisioner: shell...
+    default: Running: inline script
+    default: 
+    default: WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+    default: 
+    default: Hit:1 https://deb.nodesource.com/node_20.x nodistro InRelease
+    default: Hit:2 http://ports.ubuntu.com/ubuntu-ports jammy InRelease
+    default: Hit:3 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease
+    default: Hit:4 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease
+    default: Hit:5 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease
+    default: Reading package lists...
+    default: Building dependency tree...
+    default: Reading state information...
+    default: 107 packages can be upgraded. Run 'apt list --upgradable' to see them.
+    default: v20.19.3
+    default: 10.8.2
+    default: Python 3.10.12
+==> default: Running provisioner: shell...
+    default: Running: /var/folders/sf/frc5kl696wsfk3zyn5jlcjqc0000gn/T/vagrant-shell20250626-29668-tvcwgw.sh
+    default: 127.0.0.1 database
+    default: 127.0.0.1 redis
+    default: Cloning into 'roxs-devops-project90'...
+    default: npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+    default: npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+    default: npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+    default: npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+    default: npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+    default: npm warn deprecated superagent@8.1.2: Please upgrade to v9.0.0+ as we have fixed a public vulnerability with formidable dependency. Note that v9.0.0+ requires Node.js v14.18.0+. See https://github.com/ladjs/superagent/pull/1800 for insight. This project is supported and maintained by the team at Forward Email @ https://forwardemail.net
+    default: npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+    default: 
+    default: added 451 packages, and audited 452 packages in 1m
+    default: 
+    default: 68 packages are looking for funding
+    default:   run `npm fund` for details
+    default: 
+    default: found 0 vulnerabilities
+    default: Worker service running
+    default: Requirement already satisfied: Flask==3.0.3 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 1)) (3.0.3)
+    default: Requirement already satisfied: Redis==5.0.4 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 2)) (5.0.4)
+    default: Requirement already satisfied: gunicorn==21.2.0 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 3)) (21.2.0)
+    default: Requirement already satisfied: prometheus-flask-exporter==0.23.0 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 4)) (0.23.0)
+    default: Requirement already satisfied: prometheus-client==0.20.0 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 5)) (0.20.0)
+    default: Requirement already satisfied: mock==5.1.0 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 6)) (5.1.0)
+    default: Requirement already satisfied: flake8==7.0.0 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 7)) (7.0.0)
+    default: Requirement already satisfied: watchdog==4.0.0 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 8)) (4.0.0)
+    default: Requirement already satisfied: psycopg2-binary==2.9.9 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 9)) (2.9.9)
+    default: Requirement already satisfied: Jinja2>=3.1.2 in /usr/local/lib/python3.10/dist-packages (from Flask==3.0.3->-r requirements.txt (line 1)) (3.1.6)
+    default: Requirement already satisfied: Werkzeug>=3.0.0 in /usr/local/lib/python3.10/dist-packages (from Flask==3.0.3->-r requirements.txt (line 1)) (3.1.3)
+    default: Requirement already satisfied: itsdangerous>=2.1.2 in /usr/local/lib/python3.10/dist-packages (from Flask==3.0.3->-r requirements.txt (line 1)) (2.2.0)
+    default: Requirement already satisfied: blinker>=1.6.2 in /usr/local/lib/python3.10/dist-packages (from Flask==3.0.3->-r requirements.txt (line 1)) (1.9.0)
+    default: Requirement already satisfied: click>=8.1.3 in /usr/local/lib/python3.10/dist-packages (from Flask==3.0.3->-r requirements.txt (line 1)) (8.2.1)
+    default: Requirement already satisfied: async-timeout>=4.0.3 in /usr/local/lib/python3.10/dist-packages (from Redis==5.0.4->-r requirements.txt (line 2)) (5.0.1)
+    default: Requirement already satisfied: packaging in /usr/lib/python3/dist-packages (from gunicorn==21.2.0->-r requirements.txt (line 3)) (21.3)
+    default: Requirement already satisfied: pycodestyle<2.12.0,>=2.11.0 in /usr/local/lib/python3.10/dist-packages (from flake8==7.0.0->-r requirements.txt (line 7)) (2.11.1)
+    default: Requirement already satisfied: mccabe<0.8.0,>=0.7.0 in /usr/local/lib/python3.10/dist-packages (from flake8==7.0.0->-r requirements.txt (line 7)) (0.7.0)
+    default: Requirement already satisfied: pyflakes<3.3.0,>=3.2.0 in /usr/local/lib/python3.10/dist-packages (from flake8==7.0.0->-r requirements.txt (line 7)) (3.2.0)
+    default: Requirement already satisfied: MarkupSafe>=2.0 in /usr/local/lib/python3.10/dist-packages (from Jinja2>=3.1.2->Flask==3.0.3->-r requirements.txt (line 1)) (3.0.2)
+    default: WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+    default: Vote service running
+    default: [2025-06-26 09:07:57 +0000] [3227] [INFO] Starting gunicorn 21.2.0
+    default: [2025-06-26 09:07:57 +0000] [3227] [INFO] Listening at: http://0.0.0.0:80 (3227)
+    default: [2025-06-26 09:07:57 +0000] [3227] [INFO] Using worker: sync
+    default: [2025-06-26 09:07:57 +0000] [3239] [INFO] Booting worker with pid: 3239
+    default: [2025-06-26 09:07:57,172] INFO in app: Metrics updated: Cats=1, Dogs=0, Total=1
+    default: [2025-06-26 09:07:57 +0000] [3239] [INFO] Metrics updated: Cats=1, Dogs=0, Total=1
+    default: [2025-06-26 09:08:07,186] INFO in app: Metrics updated: Cats=1, Dogs=0, Total=1
+    default: [2025-06-26 09:08:07 +0000] [3239] [INFO] Metrics updated: Cats=1, Dogs=0, Total=1
+    default: npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+    default: npm warn deprecated lodash.get@4.4.2: This package is deprecated. Use the optional chaining (?.) operator instead.
+    default: npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+    default: npm warn deprecated glob@8.1.0: Glob versions prior to v9 are no longer supported
+    default: npm warn deprecated superagent@8.1.2: Please upgrade to v9.0.0+ as we have fixed a public vulnerability with formidable dependency. Note that v9.0.0+ requires Node.js v14.18.0+. See https://github.com/ladjs/superagent/pull/1800 for insight. This project is supported and maintained by the team at Forward Email @ https://forwardemail.net
+    default: 
+    default: added 455 packages, and audited 456 packages in 16s
+    default: 
+    default: 60 packages are looking for funding
+    default:   run `npm fund` for details
+    default: 
+    default: found 0 vulnerabilities
+    default: Result app running

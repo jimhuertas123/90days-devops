@@ -1,0 +1,15 @@
+# Variables de entorno con datos sensibles
+.env
+
+# Logs
+*.log
+
+# Node modules
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+
+# Docker
+.dockerignore

@@ -1,0 +1,20 @@
+Vagrant.configure("2") do |config|
+  # Usa una imagen ligera de Ubuntu 22.04
+  config.vm.box = "bento/ubuntu-22.04"
+  
+  # Configuración de red (accesible via IP)
+  config.vm.network "private_network", ip: "192.168.33.10"
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+  
+  # Provisionamiento con Shell
+  config.vm.provision "shell", inline: <<-SHELL
+    echo "¡Hola desde el provisionamiento!" > /tmp/hola.txt
+    apt update && apt install -y nginx
+    systemctl start nginx
+    echo "Nginx instalado y en ejecución" > /var/www/html/index.html
+    #copy from local machine to the virtualbox machine
+    cp /vagrant/index.html /var/www/html/index.html
+    cat /var/www/html/index.html
+    echo "Provisionamiento completado"
+  SHELL
+end
